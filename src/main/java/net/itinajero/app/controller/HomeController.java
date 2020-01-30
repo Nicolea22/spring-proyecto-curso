@@ -61,7 +61,8 @@ public class HomeController {
 
 			peliculas.add(pelicula1);
 			peliculas.add(pelicula2);
-			peliculas.add(pelicula3);
+            peliculas.add(pelicula3);
+            peliculas.add(pelicula4);
 
 			return peliculas;
         } catch (ParseException e) {

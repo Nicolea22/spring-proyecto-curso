@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,6 @@
 <spring:url value="/resources" var="urlPublic" />
 
 <body>
-${urlPublic}
 <div class="panel panel-default">
 	<div class="panel-heading">Lista de peliculas</div>
 	<div class="panel-body">
@@ -35,8 +35,17 @@ ${urlPublic}
 						<td>${pelicula.duracion}</td>
 						<td>${pelicula.clasificacion}</td>
 						<td>${pelicula.genero}</td>
-						<td>${pelicula.status}</td>
 						<td><img src="${urlPublic}/images/${pelicula.imagen}" width="80" height="100"></td>
+						<td>
+							<c:choose>
+								<c:when test="${pelicula.status == 'Activa'}">
+									<span class="label label-success">ACTIVA</span>
+								</c:when>
+								<c:otherwise>
+									<span class="label label-danger">INACTIVA</span>
+								</c:otherwise>
+							</c:choose>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>

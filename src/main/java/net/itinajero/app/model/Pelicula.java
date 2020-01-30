@@ -9,6 +9,7 @@ public class Pelicula {
 	private int duracion;
 	private String clasificacion;
 	private String genero;
+	private String status;
 	private String imagen = "cinema.png";
 	private Date fechaEstreno;
 
@@ -69,6 +70,14 @@ public class Pelicula {
 
 	public void setFechaEstreno(Date fechaEstreno) {
 		this.fechaEstreno = fechaEstreno;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Override

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
     public List<Pelicula> getLista() {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         List<Pelicula> peliculas = new LinkedList<Pelicula>();
@@ -73,6 +72,14 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
+    public String mostrarPeliculas(Model model) {
+        List<Pelicula> peliculas = getLista();
+        model.addAttribute("peliculas", peliculas);
+        return "homeRespaldo";
+    }
+
+
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String mostrarPrincipal(Model model) {
         List<Pelicula> peliculas = getLista();
         model.addAttribute("peliculas", peliculas);

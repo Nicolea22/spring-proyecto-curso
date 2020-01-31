@@ -1,6 +1,7 @@
 package com.nicolea.app.controller;
 
 import com.nicolea.app.model.Pelicula;
+import com.nicolea.app.util.Utileria;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,6 @@ public class HomeController {
     private SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
     public List<Pelicula> getLista() {
-
         List<Pelicula> peliculas = new LinkedList<Pelicula>();
         try {
             Pelicula pelicula1 = new Pelicula();
@@ -71,19 +71,30 @@ public class HomeController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 
+    @RequestMapping(value="/search", method= RequestMethod.POST)
+    public String buscar(Model model, @RequestParam("fecha") String fecha) {
+        model.addAttribute("fechaBusqueda", fecha);
+        List<String> listaFechas = Utileria.getNextDays(3);
+        List<Pelicula> peliculas = getLista();
+        model.addAttribute("fechas", listaFechas);
+        model.addAttribute("peliculas", peliculas);
+        return "home";
+    }
+
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
-    public String mostrarDetalle(Model model, @RequestParam("idMovie") int idPelicula, @RequestParam("fecha") Date fecha) {
+    public String mostrarDetalle(Model model, @RequestParam("idMovie") int idPelicula, @RequestParam("fecha") String fecha) {
         return "detalles";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String mostrarPrincipal(Model model) {
+        List<String> listaFechas = Utileria.getNextDays(3);
         List<Pelicula> peliculas = getLista();
         model.addAttribute("fechaBusqueda", formatter.format(new Date()));
+        model.addAttribute("fechas", listaFechas);
         model.addAttribute("peliculas", peliculas);
         return "home";
     }

@@ -1,21 +1,25 @@
-package net.itinajero.app.controller;
+package com.nicolea.app.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.LinkedList;
-import java.util.List;
-
-import net.itinajero.app.model.Pelicula;
+import com.nicolea.app.model.Pelicula;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 @Controller
 public class HomeController {
 
+    private SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
     public List<Pelicula> getLista() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
         List<Pelicula> peliculas = new LinkedList<Pelicula>();
         try {
             Pelicula pelicula1 = new Pelicula();
@@ -72,16 +76,14 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
-    public String mostrarPeliculas(Model model) {
-        List<Pelicula> peliculas = getLista();
-        model.addAttribute("peliculas", peliculas);
-        return "homeRespaldo";
+    public String mostrarDetalle(Model model, @RequestParam("idMovie") int idPelicula, @RequestParam("fecha") Date fecha) {
+        return "detalles";
     }
 
-
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String mostrarPrincipal(Model model) {
         List<Pelicula> peliculas = getLista();
+        model.addAttribute("fechaBusqueda", formatter.format(new Date()));
         model.addAttribute("peliculas", peliculas);
         return "home";
     }

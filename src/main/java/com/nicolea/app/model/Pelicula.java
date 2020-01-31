@@ -1,4 +1,4 @@
-package net.itinajero.app.model;
+package com.nicolea.app.model;
 
 import java.util.Date;
 

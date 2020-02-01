@@ -12,7 +12,6 @@
     <title>CineSite | Bienvenido</title>
 
     <spring:url value="/resources" var="urlPublic" />
-    <spring:url value="/" var="urlRoot"></spring:url>
     <link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/theme.css"/>"/>
 

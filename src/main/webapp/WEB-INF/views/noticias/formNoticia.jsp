@@ -9,7 +9,8 @@
     <meta name="author" content="">
     <title>Creacion de Noticias</title>
 
-    <spring:url value="/resources" var="urlPublic" />
+    <spring:url value="/resources" var="urlPublic"></spring:url>
+    <spring:url value="/noticias/save" var="urlForm"></spring:url>
     <link rel="stylesheet" href="${urlPublic}/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${urlPublic}/bootstrap/css/theme.css"/>
 
@@ -42,7 +43,7 @@
 
     <h3 class="blog-title"><span class="label label-success">Datos de la Noticia</span></h3>
 
-    <form>
+    <form action="${urlForm}" method="post">
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">

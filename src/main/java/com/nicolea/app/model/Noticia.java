@@ -10,6 +10,12 @@ public class Noticia {
     private String detalle;
     private String estatus;
 
+    public Noticia(String titulo, String detalle, String estatus) {
+        this.titulo = titulo;
+        this.detalle = detalle;
+        this.estatus = estatus;
+    }
+
     public Noticia(){
         this.fecha = new Date();
         this.estatus = "Activa";

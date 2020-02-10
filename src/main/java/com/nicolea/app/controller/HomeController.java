@@ -1,6 +1,9 @@
 package com.nicolea.app.controller;
 
 import com.nicolea.app.model.Pelicula;
+import com.nicolea.app.service.IBannerService;
+import com.nicolea.app.service.IPeliculasService;
+import com.nicolea.app.service.implementation.BannerServiceImp;
 import com.nicolea.app.service.implementation.PeliculasServiceImp;
 import com.nicolea.app.util.Utileria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +23,10 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
-    private PeliculasServiceImp servicePeliculas;
+    private IPeliculasService servicePeliculas;
+
+    @Autowired
+    private IBannerService bannerService;
 
     private SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -46,6 +52,7 @@ public class HomeController {
         model.addAttribute("fechaBusqueda", formatter.format(new Date()));
         model.addAttribute("fechas", listaFechas);
         model.addAttribute("peliculas", servicePeliculas.buscarTodas());
+        model.addAttribute("banners", bannerService.buscarTodos());
         return "home";
     }
 

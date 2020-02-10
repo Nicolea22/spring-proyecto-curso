@@ -1,12 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: nico_
-  Date: 4/2/2020
-  Time: 21:53
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,32 +21,14 @@
 <body>
 
 <!-- Fixed navbar -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">My CineSite</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="#">Acerca</a></li>
-                <li><a href="#">Login</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</nav>
+<jsp:include page="../includes/menu.jsp"></jsp:include>
 
 <div class="container theme-showcase" role="main">
 
     <div class="page-header">
         <h3 class="blog-title"><span class="label label-success">Datos de la Pelicula</span></h3>
     </div>
-    
+
     <spring:hasBindErrors name="pelicula">
         <div class="alert alert-danger" role="alert">
             Por favor corrija los siguientes errores
@@ -64,19 +39,19 @@
             </ul>
         </div>
     </spring:hasBindErrors>
-    
-    <form action="${urlForm}" method="post">
+
+    <form action="${urlForm}" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="titulo">Título</label>
-                    <input type="text" class="form-control" name="titulo" id="titulo" required="required" />
+                    <input type="text" class="form-control" name="titulo" id="titulo" required="required"/>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="duracion">Duracion</label>
-                    <input type="text" class="form-control" name="duracion" id="duracion" required="required" />
+                    <input type="text" class="form-control" name="duracion" id="duracion" required="required"/>
                 </div>
             </div>
             <div class="col-sm-3">
@@ -94,7 +69,7 @@
                     <label for="genero" class="control-label">Genero</label>
                     <select id="generoId" name="genero" class="form-control">
                         <option value="Accion">Accion</option>
-                        <option value="Aventura">Aventura </option>
+                        <option value="Aventura">Aventura</option>
                         <option value="Clasicas">Clasicas</option>
                         <option value="Comedia Romantica">Comedia Romantica</option>
                         <option value="Drama">Drama</option>
@@ -111,7 +86,7 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="estatus" class="control-label">Estatus</label>
-                    <select id="genero" name="estatus" class="form-control">
+                    <select id="genero" name="status" class="form-control">
                         <option value="Activa">Activa</option>
                         <option value="Inactiva">Inactiva</option>
                     </select>
@@ -120,14 +95,14 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="fechaEstreno">Fecha Estreno</label>
-                    <input type="text" class="form-control" name="fechaEstreno" id="fechaEstreno" required="required" />
+                    <input type="text" class="form-control" name="fechaEstreno" id="fechaEstreno" required="required"/>
                 </div>
             </div>
 
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="imagen">Imagen</label>
-                    <input type="file" id="archivoImagen" name="archivoImagen" />
+                    <input type="file" id="archivoImagen" name="archivoImagen"/>
                     <p class="help-block">Imagen de la pelicula</p>
                 </div>
             </div>
@@ -170,22 +145,15 @@
         </div>
         -->
 
-        <button type="submit" class="btn btn-danger" >Guardar</button>
+        <button type="submit" class="btn btn-danger">Guardar</button>
     </form>
 
     <hr class="featurette-divider">
 
-    <!-- FOOTER -->
-    <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017 My CineSite, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-    </footer>
+    <jsp:include page="../includes/footer.jsp"></jsp:include>
 
-</div> <!-- /container -->
+</div>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="${urlPublic}/bootstrap/js/bootstrap.min.js" rel="stylesheet"></script>
 <script src="${urlPublic}/tinymce/tinymce.min.js" rel="stylesheet"></script>

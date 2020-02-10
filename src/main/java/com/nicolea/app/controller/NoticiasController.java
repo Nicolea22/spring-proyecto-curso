@@ -1,7 +1,7 @@
 package com.nicolea.app.controller;
 
 import com.nicolea.app.model.Noticia;
-import com.nicolea.app.service.implementation.INoticiasServiceImp;
+import com.nicolea.app.service.implementation.NoticiasServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ public class NoticiasController {
 
 
     @Autowired
-    private INoticiasServiceImp noticiasService;
+    private NoticiasServiceImp noticiasService;
 
     @GetMapping(value="/create")
     public String crear() {

@@ -3,6 +3,7 @@ package com.nicolea.app.service.implementation;
 import com.nicolea.app.model.Pelicula;
 import com.nicolea.app.service.IPeliculasService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -45,7 +46,7 @@ public class PeliculasServiceImp implements IPeliculasService {
             pelicula3.setGenero("Thriller");
             pelicula3.setImagen("contratiempo.png");
             pelicula3.setFechaEstreno(formatter.parse("20-05-2017"));
-            pelicula3.setStatus("Activa");
+            pelicula3.setStatus("Inactiva");
 
             Pelicula pelicula4 = new Pelicula();
             pelicula4.setId(4);
@@ -79,5 +80,12 @@ public class PeliculasServiceImp implements IPeliculasService {
         }
         return null;
     }
+
+    @PostMapping("/save")
+    public void insertar(Pelicula pelicula) {
+        peliculas.add(pelicula);
+    }
+
+
 
 }

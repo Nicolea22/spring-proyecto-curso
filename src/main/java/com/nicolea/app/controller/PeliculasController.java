@@ -36,12 +36,12 @@ public class PeliculasController {
     }
 
     @GetMapping("/create")
-    public String crear() {
+    public String crear(@ModelAttribute Pelicula pelicula) {
         return "peliculas/formPelicula";
     }
 
     @PostMapping("/save")
-    public String guardar(Pelicula pelicula, BindingResult result, RedirectAttributes attributes,
+    public String guardar(@ModelAttribute Pelicula pelicula, BindingResult result, RedirectAttributes attributes,
                           @RequestParam("archivoImagen") MultipartFile multiPart, HttpServletRequest request) {
 
         if (!multiPart.isEmpty()) {
@@ -58,7 +58,7 @@ public class PeliculasController {
 
 
     @InitBinder
-    public void initBinder(WebDataBinder binder){
+    public void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }

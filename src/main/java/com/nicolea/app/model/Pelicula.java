@@ -82,6 +82,14 @@ public class Pelicula {
 		this.status = status;
 	}
 
+	public Detalle getDetalle() {
+		return detalle;
+	}
+
+	public void setDetalle(Detalle detalle) {
+		this.detalle = detalle;
+	}
+
 	@Override
 	public String toString() {
 		return "Pelicula{" +

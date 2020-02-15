@@ -1,8 +1,6 @@
 package com.nicolea.app.controller;
 
-
 import com.nicolea.app.model.Pelicula;
-import javax.servlet.http.HttpServletRequest;
 import com.nicolea.app.service.IPeliculasService;
 import com.nicolea.app.util.Utileria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.File;
-import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -26,10 +23,10 @@ import java.util.List;
 public class PeliculasController {
 
     @Autowired
-    IPeliculasService peliculasService;
+    private IPeliculasService peliculasService;
 
     @GetMapping("/index")
-    public String mostrarIndex(Model model){
+    public String mostrarIndex(Model model) {
         List<Pelicula> lista = peliculasService.buscarTodas();
         model.addAttribute("peliculas", lista);
         return "peliculas/listPeliculas";
@@ -56,15 +53,10 @@ public class PeliculasController {
         return "redirect:/peliculas/index";
     }
 
-
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
-
-
-
-
 
 }

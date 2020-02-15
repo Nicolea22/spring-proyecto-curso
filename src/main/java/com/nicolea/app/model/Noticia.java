@@ -60,4 +60,15 @@ public class Noticia {
     public void setEstatus(String estatus) {
         this.estatus = estatus;
     }
+
+    @Override
+    public String toString() {
+        return "Noticia{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", fecha=" + fecha +
+                ", detalle='" + detalle + '\'' +
+                ", estatus='" + estatus + '\'' +
+                '}';
+    }
 }

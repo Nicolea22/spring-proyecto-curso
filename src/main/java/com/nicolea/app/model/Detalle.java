@@ -50,4 +50,15 @@ public class Detalle {
     public void setTrailer(String trailer) {
         this.trailer = trailer;
     }
+
+    @Override
+    public String toString() {
+        return "Detalle{" +
+                "id=" + id +
+                ", director='" + director + '\'' +
+                ", actores='" + actores + '\'' +
+                ", sinopsis='" + sinopsis + '\'' +
+                ", trailer='" + trailer + '\'' +
+                '}';
+    }
 }

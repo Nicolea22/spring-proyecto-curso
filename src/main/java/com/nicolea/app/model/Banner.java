@@ -51,4 +51,15 @@ public class Banner {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Banner{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", fecha=" + fecha +
+                ", archivo='" + archivo + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

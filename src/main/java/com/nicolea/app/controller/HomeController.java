@@ -3,8 +3,6 @@ package com.nicolea.app.controller;
 import com.nicolea.app.model.Pelicula;
 import com.nicolea.app.service.IBannerService;
 import com.nicolea.app.service.IPeliculasService;
-import com.nicolea.app.service.implementation.BannerServiceImp;
-import com.nicolea.app.service.implementation.PeliculasServiceImp;
 import com.nicolea.app.util.Utileria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,10 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 @Controller

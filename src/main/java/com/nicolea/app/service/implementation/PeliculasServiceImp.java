@@ -84,7 +84,6 @@ public class PeliculasServiceImp implements IPeliculasService {
             detalle4.setSinopsis("En la década de 1970, un grupo de soldados y exploradores, acompañados por una fotoperiodista, llega a una isla del Pacífico habitada por un simio gigantesco y otros monstruos. Marlow, un peculiar habitante del lugar, guía a los aventureros a través de las misteriosas junglas y marismas de la isla.");
             pelicula4.setDetalle(detalle4);
 
-
             peliculas.add(pelicula1);
             peliculas.add(pelicula2);
             peliculas.add(pelicula3);
@@ -108,11 +107,22 @@ public class PeliculasServiceImp implements IPeliculasService {
         return null;
     }
 
-    @PostMapping("/save")
     public void insertar(Pelicula pelicula) {
         peliculas.add(pelicula);
     }
 
+    public List<String> buscarGeneros() {
+        List<String> generos = new LinkedList<String>();
+        generos.add("Aventura");
+        generos.add("Clasicas");
+        generos.add("Comedia");
+        generos.add("Drama");
+        generos.add("Terror");
+        generos.add("Infantil");
+        generos.add("Accion");
+        generos.add("Romantica");
+        return generos;
+    }
 
 
 }

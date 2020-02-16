@@ -4,7 +4,6 @@ import com.nicolea.app.model.Detalle;
 import com.nicolea.app.model.Pelicula;
 import com.nicolea.app.service.IPeliculasService;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -98,7 +97,7 @@ public class PeliculasServiceImp implements IPeliculasService {
         return peliculas;
     }
 
-    public Pelicula buscarPorId(int idPelicula){
+    public Pelicula buscarPorId(int idPelicula) {
         for(Pelicula pelicula : peliculas){
             if(pelicula.getId() == idPelicula ) {
                 return pelicula;

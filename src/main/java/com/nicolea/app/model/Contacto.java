@@ -1,13 +1,14 @@
 package com.nicolea.app.model;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Contacto {
 
     private String nombre;
     private String email;
     private int rating;
-    private String[] notificaciones;
+    private List<String> notificaciones;
     private String[] generos;
     private String comentarios;
 
@@ -35,11 +36,11 @@ public class Contacto {
         this.rating = rating;
     }
 
-    public String[] getNotificaciones() {
+    public List<String> getNotificaciones() {
         return notificaciones;
     }
 
-    public void setNotificaciones(String[] notificaciones) {
+    public void setNotificaciones(List<String> notificaciones) {
         this.notificaciones = notificaciones;
     }
 
@@ -65,7 +66,7 @@ public class Contacto {
                 "nombre='" + nombre + '\'' +
                 ", email='" + email + '\'' +
                 ", rating=" + rating +
-                ", notificaciones=" + Arrays.toString(notificaciones) +
+                ", notificaciones=" + notificaciones +
                 ", generos=" + Arrays.toString(generos) +
                 ", comentarios='" + comentarios + '\'' +
                 '}';

@@ -2,7 +2,9 @@ package com.nicolea.app.repository;
 
 import com.nicolea.app.model.Noticia;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface NoticiasRepository{
+@Repository
+public interface NoticiasRepository extends CrudRepository<Noticia, Integer> {
 
 }

@@ -1,14 +1,33 @@
 package com.nicolea.app.model;
 
+
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "noticias")
 public class Noticia {
 
-    private int id;
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name="titulo", length = 250, nullable = false)
     private String titulo;
+
+    @Column(name="fecha", nullable = false)
     private Date fecha;
+
+    @Column(name="detalle", nullable = false)
     private String detalle;
+
     private String estatus;
+
+    public Noticia() {
+        this.fecha = new Date();
+        this.estatus = "Activa";
+    }
 
     public Noticia(String titulo, String detalle, String estatus) {
         this.titulo = titulo;
@@ -16,16 +35,11 @@ public class Noticia {
         this.estatus = estatus;
     }
 
-    public Noticia(){
-        this.fecha = new Date();
-        this.estatus = "Activa";
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -71,4 +85,11 @@ public class Noticia {
                 ", estatus='" + estatus + '\'' +
                 '}';
     }
+
+    public enum Status {
+        Activa,
+        Inactiva;
+    }
 }
+
+

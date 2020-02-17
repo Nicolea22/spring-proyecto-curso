@@ -1,6 +1,7 @@
 package com.nicolea.app.controller;
 
 import com.nicolea.app.model.Pelicula;
+import com.nicolea.app.repository.NoticiasRepository;
 import com.nicolea.app.service.IBannerService;
 import com.nicolea.app.service.IPeliculasService;
 import com.nicolea.app.util.Utileria;

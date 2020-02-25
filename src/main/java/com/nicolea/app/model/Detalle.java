@@ -1,7 +1,13 @@
 package com.nicolea.app.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="detalles")
 public class Detalle {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String director;
     private String actores;

@@ -18,7 +18,7 @@
     <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
         <property name="generateDdl" value="false" />
         <property name="showSql" value="true"></property>
-        <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
+        <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
     </bean>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

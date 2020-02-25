@@ -1,18 +1,25 @@
 package com.nicolea.app.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name="peliculas")
 public class Pelicula {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String titulo;
 	private int duracion;
 	private String clasificacion;
 	private String genero;
-	private String status;
-	private String imagen = "cinema.png";
+	private String estatus;
+	private String imagen;
 	private Date fechaEstreno;
 
+	@OneToOne
+	@JoinColumn(name = "idDetalle")
 	private Detalle detalle;
 
 	public Pelicula() {
@@ -75,11 +82,11 @@ public class Pelicula {
 	}
 
 	public String getStatus() {
-		return status;
+		return estatus;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatus(String estatus) {
+		this.estatus = estatus;
 	}
 
 	public Detalle getDetalle() {

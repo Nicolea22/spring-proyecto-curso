@@ -1,6 +1,7 @@
 package com.nicolea.app.controller;
 
 import com.nicolea.app.model.Pelicula;
+import com.nicolea.app.service.IDetallesService;
 import com.nicolea.app.service.IPeliculasService;
 import com.nicolea.app.util.Utileria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class PeliculasController {
 
     @Autowired
     private IPeliculasService peliculasService;
+
+    @Autowired
+    private IDetallesService detallesService;
 
     @GetMapping("/index")
     public String mostrarIndex(Model model) {
@@ -49,6 +53,8 @@ public class PeliculasController {
         if (result.hasErrors()) {
             return "peliculas/formPelicula";
         }
+
+        detallesService.insertar(pelicula.getDetalle());
         peliculasService.insertar(pelicula);
         attributes.addFlashAttribute("mensaje", "El registro fue guardado");
         return "redirect:/peliculas/index";

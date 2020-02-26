@@ -38,7 +38,13 @@ public class PeliculasController {
 
     @GetMapping("/create")
     public String crear(@ModelAttribute Pelicula pelicula, Model model) {
-        model.addAttribute("generos", peliculasService.buscarGeneros());
+        return "peliculas/formPelicula";
+    }
+
+    @GetMapping(value= "edit/{id}")
+    public String editar(@PathVariable("id") int idPelicula, Model model) {
+        Pelicula pelicula = peliculasService.buscarPorId(idPelicula);
+        model.addAttribute("pelicula", pelicula);
         return "peliculas/formPelicula";
     }
 
@@ -58,6 +64,11 @@ public class PeliculasController {
         peliculasService.insertar(pelicula);
         attributes.addFlashAttribute("mensaje", "El registro fue guardado");
         return "redirect:/peliculas/index";
+    }
+
+    @ModelAttribute(value = "generos")
+    public List<String> getGeneros(){
+        return peliculasService.buscarGeneros();
     }
 
     @InitBinder

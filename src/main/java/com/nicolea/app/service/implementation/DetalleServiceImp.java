@@ -16,4 +16,9 @@ public class DetalleServiceImp implements IDetallesService {
     public void insertar(Detalle detalle) {
         detallesRepository.save(detalle);
     }
+
+    @Override
+    public void eliminar(Detalle detalle) {
+        detallesRepository.delete(detalle);
+    }
 }

@@ -6,6 +6,8 @@ import com.nicolea.app.service.IPeliculasService;
 import com.nicolea.app.util.Utileria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,14 +32,17 @@ public class PeliculasController {
     private IDetallesService detallesService;
 
     @GetMapping("/index")
-    public String mostrarIndex(Model model) {
-        List<Pelicula> lista = peliculasService.buscarTodas();
-        model.addAttribute("peliculas", lista);
+    public String mostrarIndex(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+        int pageIndex = page;
+        Page<Pelicula> paginas = peliculasService.buscarPorPagina(--pageIndex);
+        model.addAttribute("page", page);
+        model.addAttribute("limite", paginas.getTotalPages());
+        model.addAttribute("peliculas", paginas);
         return "peliculas/listPeliculas";
     }
 
     @GetMapping("/create")
-    public String crear(@ModelAttribute Pelicula pelicula, Model model) {
+    public String crear(@ModelAttribute Pelicula pelicula) {
         return "peliculas/formPelicula";
     }
 
@@ -46,6 +51,15 @@ public class PeliculasController {
         Pelicula pelicula = peliculasService.buscarPorId(idPelicula);
         model.addAttribute("pelicula", pelicula);
         return "peliculas/formPelicula";
+    }
+
+    @GetMapping(value= "delete/{id}")
+    public String eliminar(@PathVariable("id") int idPelicula, RedirectAttributes attribute) {
+        Pelicula pelicula = peliculasService.buscarPorId(idPelicula);
+        peliculasService.eliminar(pelicula);
+        detallesService.eliminar(pelicula.getDetalle());
+        attribute.addFlashAttribute("mensaje","La pelicula fue eliminada");
+        return "redirect:/peliculas/index";
     }
 
     @PostMapping("/save")
@@ -67,7 +81,7 @@ public class PeliculasController {
     }
 
     @ModelAttribute(value = "generos")
-    public List<String> getGeneros(){
+    public List<String> getGeneros() {
         return peliculasService.buscarGeneros();
     }
 

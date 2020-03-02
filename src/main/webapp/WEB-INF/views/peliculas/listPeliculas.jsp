@@ -75,38 +75,38 @@
 
     <nav aria-label="">
     <ul class="pagination">
+    <c:choose>
+        <c:when test="${page != 1}">
+            <li><a href="${urlRoot}peliculas/index?page=${page-1}">Anterior</a></li>
+        </c:when>
+        <c:otherwise>
+            <li><a class="disabled">Anterior</a></li>
+        </c:otherwise>
+    </c:choose>
+    <c:forEach begin="1" end="${limite}" var="i">
         <c:choose>
-            <c:when test="${page != 1}">
-                <li><a href="${urlRoot}peliculas/index?page=${page-1}">Anterior</a></li>
-            </c:when>
-            <c:otherwise>
-                <li><a class="disabled">Anterior</a></li>
-            </c:otherwise>
-        </c:choose>
-        <c:forEach begin="1" end="${limite}" var="i">
-            <c:choose>
-                <c:when test="${page eq i}">
+            <c:when test="${page eq i}">
                 <li class="page-item active">
                     <a class="page-link" href="${urlRoot}peliculas/index?page=${i}">
-                        ${i}<span class="sr-only">(current)</span>
+                            ${i}<span class="sr-only">(current)</span>
                     </a>
                 </li>
-                </c:when>
-                <c:otherwise>
-                    <li class="page-item">
-                        <a class="page-link" href="${urlRoot}peliculas/index?page=${i}">${i}</a>
-                    </li>
-                </c:otherwise>
-            </c:choose>
-        </c:forEach>
-        <c:choose>
-            <c:when test="${page lt limite}">
-                <li><a href="${urlRoot}peliculas/index?page=${page+1}">Siguiente</a></li>
             </c:when>
             <c:otherwise>
-                <li><a class="disabled">Siguiente</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="${urlRoot}peliculas/index?page=${i}">${i}</a>
+                </li>
             </c:otherwise>
         </c:choose>
+    </c:forEach>
+    <c:choose>
+        <c:when test="${page lt limite}">
+            <li><a href="${urlRoot}peliculas/index?page=${page+1}">Siguiente</a></li>
+        </c:when>
+        <c:otherwise>
+            <li><a class="disabled">Siguiente</a></li>
+        </c:otherwise>
+    </c:choose>
     </ul>
     </nav>
 
